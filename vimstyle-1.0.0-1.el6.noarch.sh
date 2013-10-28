@@ -2,9 +2,9 @@
 
 ################ Script Info ################		
 
-## Program: Auto Script V1.0
+## Program: Auto Config VIM V1.0
 ## Author:Clumart.G
-## Date: 2013-12-12
+## Date: 2013-10-28
 ## Update:None
 
 
@@ -68,7 +68,7 @@ printf " o----------------------------------------------------------------o\n"
 
 function _header() {
 	printf " o----------------------------------------------------------------o\n"
-	printf " | :: Auto Script                             v1.0.0 (2012/12/12) |\n"
+	printf " | :: Auto Config VIM                         v1.0.0 (2013-10-28) |\n"
 	printf " o----------------------------------------------------------------o\n"	
 }
 
@@ -77,11 +77,6 @@ function _header() {
 ################ Main ################
 clear
 _info_msg
-
-if [ `id -u` != "0" ]; then
-echo -e "You need to be be the root user to run this script.\nWe also suggest you use a direct root login, not su -, sudo etc..."
-exit 1
-fi
 
 if [ ! -d $HomeDir ]; then
 	mkdir -p $HomeDir
