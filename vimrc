@@ -5,7 +5,6 @@
 " Update:None
 """""""""""""""""""""""""""""""""
 " => General Options "{{{ 
-set guifont=Consolas\ DejaVu\ Sans\ YuanTi\ Mono\ 10
 
 " Session blank,buffers,curdir,folds,help,options,tabpages,winsize :help ssop
 set sessionoptions-=curdir
@@ -61,18 +60,23 @@ autocmd BufReadPost *
 
 "}}} 
 " => Colors and Fonts "{{{ 
+
+"t_co must before colorscheme
 set t_Co=256
-" 设置vim的本色方案
-"set background=dark
-"colorscheme wombat
-colorscheme desert
 
 " 语法高亮
 syntax on
 
+" 设置vim的配色方案
+"set background=dark
+"colors peaksea 
+"colorscheme wombat
+colorscheme desert
+
 " 字体
 "set gfn=Vera\ Sans\ YuanTi\ Mono:h10
 "set gfn=Droid\ Sans\ Fallback:h10
+set guifont=Consolas\ DejaVu\ Sans\ YuanTi\ Mono\ 10
 
 " GUI
 if has("gui_running")
@@ -80,7 +84,7 @@ if has("gui_running")
 	let psc_style='cool'
 endif 
 
-" 折叠相关
+" 折叠相关 indent syntax 
 set foldmethod=marker
 "}}}
 " => other UI options"{{{
