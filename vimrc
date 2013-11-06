@@ -97,7 +97,8 @@ set expandtab
 set smartindent 
 set shiftwidth=4
 set autoindent 
-set cindent 
+" C language  indent style
+" set cindent    
 
 " 显示行号
 set number 
@@ -105,19 +106,19 @@ set number
 " 显示光标位置 
 set ruler 
 
-" wild菜单 
+" wild菜单 on vim command line ,it's support tab auto Padded
 set wildmenu 
 
-" 上下移动时，留3行
+" 上下移动时，留3行;keep 3 lines on the top and bottom
 set so=3
 
-" set backspace
+" set backspace;eol:support del up line direct,need start option;start support del code before direct;indent support del tab indent direct;
 set backspace=eol,start,indent
 
-" Backspace and cursor keys wrap to
+" Backspace and cursor keys wrap to;support auto next line
 set whichwrap+=<,>,h,l
 
-" set magic on 
+" set magic on;$^.* needn't / in  Regular Expressions 
 set magic 
 
 " No sound on errors
@@ -129,16 +130,16 @@ set t_vb=
 set showmatch 
 
 " How many tenths of a second to blink
-set mat=2
+set mat=5
 
-" 状态栏
+" 状态栏set 2 is mean show the statusline all the time
 set laststatus=2
 function! CurDir()
 	let curdir = substitute(getcwd(), '/home/peter', "~/", "g")
 	return curdir
 endfunction
-set statusline=\ %f%m%r%h\ %w\ %<CWD:\ %{CurDir()}\ %=Pos:\ %l/%L:%c\ %p%%\ 
-
+" set the info on the statusline
+set statusline=\ %f%m%r%h\ %w\ %<CWD:\ %{CurDir()}\ [TYPE=%Y]\ %{strftime(\"[%m-%d\ %H:%M]\")}\ %=Pos:\ %l/%L:%c\ %p%%\ 
 
 " Smart way to move btw. windows
 map <C-j> <C-W>j
