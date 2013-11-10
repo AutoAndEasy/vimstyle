@@ -152,21 +152,30 @@ set cmdheight=1
 "}}}
 " => Files "{{{
 " 文件编码 
-set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,big-5,ucs,latin1
+set fileencodings=utf-8,gb2312,gbk,gb18030,big-5,ucs-bom,ucs,latin1
 
 " 启动文件类型插件
-filetype on 
+" enable file type detect
+filetype on
+" enable file type plugin for Grammar can highlight
 filetype plugin on 
+" enable file indent for different type
 filetype indent on 
 
 " 文件类型
+" Auto detect file format unix or dos
 set ffs=unix,dos
+" ff is set file to the format and nmap is a shortcut
 nmap <leader>fd :se ff=dos<cr>
 nmap <leader>fu :se ff=unix<cr>
 
 " 不备份文件
-set nobackup
-set nowritebackup
+" set nobackup
+" set nowritebackup
+" 自动备份文件
+set backup
+set writebackup
+set swapfile
 "}}}
 " => MISC"{{{
 "}}}
