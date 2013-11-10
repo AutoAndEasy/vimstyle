@@ -170,12 +170,12 @@ nmap <leader>fd :se ff=dos<cr>
 nmap <leader>fu :se ff=unix<cr>
 
 " 不备份文件
-" set nobackup
-" set nowritebackup
+set nobackup
+set nowritebackup
 " 自动备份文件
-set backup
-set writebackup
-set swapfile
+" set backup
+" set writebackup
+" set swapfile
 "}}}
 " => MISC"{{{
 "}}}
