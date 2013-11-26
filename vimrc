@@ -170,12 +170,16 @@ nmap <leader>fd :se ff=dos<cr>
 nmap <leader>fu :se ff=unix<cr>
 
 " 不备份文件
-set nobackup
-set nowritebackup
+" set nobackup
+" set nowritebackup
 " 自动备份文件
-" set backup
-" set writebackup
-" set swapfile
+" set backup enable and the bakcup store dir
+set backup
+set writebackup
+set backupdir=~/.vim/backup/,~/backup/,~/tmp/,./.vim/bakcup/,./backup/,./tmp/,./
+
+set swapfile
+set dir=~/.vim/backup/,~/backup/,~/tmp/,./.vim/bakcup/,./backup/,./tmp/,./
 "}}}
 " => MISC"{{{
 "}}}
