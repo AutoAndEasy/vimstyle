@@ -184,26 +184,41 @@ set dir=~/.vim/backup/,~/backup/,~/tmp/,./.vim/bakcup/,./backup/,./tmp/,./
 " => MISC"{{{
 "}}}
 " => Plugins "{{{
-" 自动完成 
+" 语法自动补齐
 set completeopt=longest,menu
 
 " for taglist
+" F10 Open/Close Tlist window
 nmap <F10> :TlistToggle <CR> 
+"Set ctags path
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+"if the console doesn't support auto width,then set this to 0
+let Tlist_Inc_Winwidth=1
+"set tlist on the right side
 let Tlist_Use_Right_Window=1
+"if tlist is the last window,then close vim.
+let Tlist_Exit_OnlyWindow = 1
+"if tag file > 2 ;then close other files ,only show tag file.
 let Tlist_File_Fold_Auto_Close=1 
 
+"NRED Tree Setting
 nmap <F9> :NERDTreeToggle <CR> 
 
 " MiniBufExpl 
+nmap <F4> :MiniBufExplorer<cr> :UMiniBufExplorer<cr>
+" use ctrl-hjkl to change window
 let g:miniBufExplMapWindowNavVim = 1
+" use ctrl - up down left right to change window
 let g:miniBufExplMapWindowNavArrows = 1
+" use ctrl - tab to change window ;or ctrl + shift + tab to change window backwards
 let g:miniBufExplMapCTabSwitchBufs = 1
+" open buffer file in edit window,except like tlist window 
 let g:miniBufExplModSelTarget = 1
 
-nmap <F4> :MiniBufExplorer<cr> :UMiniBufExplorer<cr>
 
-" SuperTab
-
+" SuperTab Setting
+" set tab='press what' ;defatul ctrl+p ; onmi ctrl+x or ctrl+o
+let g:SuperTabDefaultCompletionType="<C-P>"
 
 " for AutoComplete
 "let g:AutoComplPop_NotEnableAtStartup = 1
