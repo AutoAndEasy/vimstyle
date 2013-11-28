@@ -215,21 +215,30 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " open buffer file in edit window,except like tlist window 
 let g:miniBufExplModSelTarget = 1
 
-
 " SuperTab Setting
 " set tab='press what' ;defatul ctrl+p ; onmi ctrl+x or ctrl+o
-let g:SuperTabDefaultCompletionType="<C-P>"
+" I think use AutoComplete is better than this.
+" let g:SuperTabDefaultCompletionType="<C-P>"
 
 " for AutoComplete
-"let g:AutoComplPop_NotEnableAtStartup = 1
-"nmap <F10> :AutoComplPopEnable
-"nmap <C-F10> :AutoComplPopDisable
+" The auto-popup is not enabled at startup if this is non-zero.But i test it's faild!!!
+let g:AutoComplPop_NotEnableAtStartup = 1
+
+nmap <F10> :AutoComplPopEnable
+nmap <C-F10> :AutoComplPopDisable
+
+" for ctags
+" add system include Files tags
+set tags+=~/.vim/systags 
+set tags=tags;
+set autochdir
+"nmap <M-F9> :!ctags --append=yes -f ~/.vim/systags --fields=+lS
 
 " for echofunc
-set tags+=~/.vim/systags 
-"nmap <M-F9> :!ctags --append=yes -f ~/.vim/systags --fields=+lS
-"nmap <C-F9> :!ctags -R --fields=+lS
+" set the echofunc file type
 let g:EchoFuncLangsUsed = ["c", "cpp", "java"] 
+" Quick Install echofunc
+"nmap <C-F9> :!ctags -R --fields=+lS
 "}}}
 " => DIY的一些语法高亮"{{{
 "hi Mark ctermbg=Red ctermfg=Green 
@@ -263,5 +272,3 @@ set grepformat=%f:%l:%m
 
 "}}}
 
-set tags=tags;
-set autochdir
