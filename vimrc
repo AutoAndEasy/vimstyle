@@ -87,6 +87,14 @@ endif
 " 折叠相关 indent syntax 
 set foldmethod=marker
 "}}}
+" => DIY的一些语法高亮"{{{
+"define myself Highlight
+hi MySyntaxHighlight1 ctermbg=Red ctermfg=Green 
+syntax region MySyntax1 start='???' end='???'
+hi def link MySyntax1 MySyntaxHighlight1
+match MySyntaxHighlight1 '???'
+" Test line:  ??? >...< ???
+"}}} 
 " => other UI options"{{{
 " Tab缩进
 set smarttab
@@ -181,8 +189,6 @@ set backupdir=~/.vim/backup/,~/backup/,~/tmp/,./.vim/bakcup/,./backup/,./tmp/,./
 set swapfile
 set dir=~/.vim/backup/,~/backup/,~/tmp/,./.vim/bakcup/,./backup/,./tmp/,./
 "}}}
-" => MISC"{{{
-"}}}
 " => Plugins "{{{
 " 语法自动补齐
 set completeopt=longest,menu
@@ -240,13 +246,6 @@ let g:EchoFuncLangsUsed = ["c", "cpp", "java"]
 " Quick Install echofunc
 "nmap <C-F9> :!ctags -R --fields=+lS
 "}}}
-" => DIY的一些语法高亮"{{{
-"hi Mark ctermbg=Red ctermfg=Green 
-"syntax region unKnown start='???' end='???'
-"hi def link unKnown Mark
-" Test line:  ??? >...< ???
-"match Mark '???'
-"}}} 
 " => 快捷键"{{{
 " Buffer 
 set hidden
@@ -264,11 +263,13 @@ nmap <leader>b7 :b7<cr>
 nmap <leader>b8 :b8<cr>
 nmap <leader>b9 :b9<cr> 
 
+"mZ: mark Z ; -R recursive Dir -n show linenum ; cword :the word of under cursor; 
+"copn:Open a window to show the current list of errors.
 "nmap <F3> :vimgrep <cword> **/*.cpp **/*.h<cr> :copen <cr>
 "nmap <F3> mZ :grep -Rn <cword> **/*.cpp **/*.c **/*.h **/*.java 2>/dev/null<cr><cr> :copen <cr>
 nmap <F3> mZ :grep -Rn <cword> ./ 2>/dev/null<cr><cr> :copen <cr> 
+
+"%f filename  %l linenum %m errormesaage
 set grepformat=%f:%l:%m
-"set grepprg=
 
 "}}}
-
