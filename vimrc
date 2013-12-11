@@ -10,7 +10,7 @@
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
 
-" 高亮当前行并取消高亮当前列
+" 当前行横线并取消高亮当前列
 set cursorline
 set nocursorcolumn
 
@@ -18,11 +18,18 @@ set nocursorcolumn
 set nocompatible  
 
 " 设置文字编码自动识别
-set fencs=utf-8,gb18030 
-"set enc=utf-8
+" the encode of terminal screen
+set termencoding=utf-8
+"file open and write encode
+set fileencoding=utf-8
+"encode in vim work space,should same as locale of your system #vim内部使用的编码，如寄存器，缓冲区等
+set encoding=utf-8
+" 文件编码 
+set fileencodings=utf-8,gb2312,gbk,gb18030,big-5,ucs-bom,ucs,latin1
+
 
 " 有关搜索的选项
-set hls
+set hlsearch
 "实时显示当前界面的第一个匹配字符串
 set incsearch   
 set noic
@@ -65,13 +72,19 @@ autocmd BufReadPost *
 set t_Co=256
 
 " 语法高亮
-syntax on
+syntax enable
+"use vim default setting
+"syntax on
 
 " 设置vim的配色方案
-"set background=dark
-"colors peaksea 
-"colorscheme wombat
-colorscheme desert
+"colorscheme desert
+"Next 6 lines is for peaksea plugin
+if ! has("gui_running") 
+    set t_Co=256 
+endif 
+" feel free to choose :set background=light or dark for a different style 
+set background=dark
+colors peaksea
 
 " 字体
 "set gfn=Vera\ Sans\ YuanTi\ Mono:h10
@@ -159,9 +172,6 @@ map <C-l> <C-W>l
 set cmdheight=1
 "}}}
 " => Files "{{{
-" 文件编码 
-set fileencodings=utf-8,gb2312,gbk,gb18030,big-5,ucs-bom,ucs,latin1
-
 " 启动文件类型插件
 " enable file type detect
 filetype on
