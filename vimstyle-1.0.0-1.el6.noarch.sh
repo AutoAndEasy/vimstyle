@@ -18,7 +18,7 @@ export LANG
 ################ Var Setting ################
 
 InputVar=$*
-HomeDir="/tmp/autoscript/"
+HomeDir="/tmp/vimstyle/"
 SourceSiteDomain="https://github.com"
 SourceUrl="${SourceSiteDomain}/AutoAndEasy/vimstyle/archive/master.zip"
 
@@ -74,6 +74,16 @@ function _header() {
 	printf " o----------------------------------------------------------------o\n"	
 }
 
+function _error_exit() {
+    cd
+    rm -rf ${HomeDir}
+    clear
+	printf " o----------------------------------------------------------------o\n"
+	printf " | :: Error                                   v1.0.0 (2013-10-28) |\n"
+	printf " o----------------------------------------------------------------o\n"	
+	printf " Error Message:$1 "
+    exit 1
+}
 ##Program Function
 
 ################ Main ################
@@ -84,7 +94,7 @@ if [ ! -d $HomeDir ]; then
 	mkdir -p $HomeDir
 fi
 
-cd $HomeDir || exit 1
+cd $HomeDir || _error_exit "Enter ${HomeDir} Faild."
 
 #vim backup
 [ -f ~/.vimrc ] && \cp -a ~/.vimrc ~/.vimrc.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
@@ -93,14 +103,11 @@ cd $HomeDir || exit 1
 #Get the source
 yum -y install wget
 wget --no-check-certificate ${SourceUrl} -O vimstyle.zip
-if [ -f vimstyle.zip ]; then
-    echo "Error:Download faild."
-    exit 1
-fi
+[ ! -s vimstyle.zip ] && _error_exit "Download Faild."
 
 #vimstyle install
 unzip vimstyle.zip
-cd vimstyle-master/ || exit 1
+cd vimstyle-master/ || _error_exit "Enter vimstyle dir faild."
 
 [ -f vimrc ] && \cp -a vimrc ~/.vimrc
 [ -d vim ] && \cp -a vim ~/.vim
