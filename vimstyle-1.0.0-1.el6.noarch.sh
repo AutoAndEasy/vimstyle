@@ -88,10 +88,10 @@ cd $HomeDir || exit 1
 
 #vim backup
 if [ -f ~/.vimrc ]; then 
-    \cp -a ~/.vimrc ~/.vimrc.`date +%Y%m%d%H%M%S`.bakbyvimstyle
+    \cp -a ~/.vimrc ~/.vimrc.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
 fi
 if [ -d ~/.vim ]; then
-    \cp -a ~/.vim ~/.vim.`date +%Y%m%d%H%M%S`.bakbyvimstyle
+    \cp -a ~/.vim ~/.vim.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
 fi
 
 #Get the source
