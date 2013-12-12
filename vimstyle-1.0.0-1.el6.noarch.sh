@@ -81,7 +81,7 @@ function _error_exit() {
 	printf " o----------------------------------------------------------------o\n"
 	printf " | :: Error                                   v1.0.0 (2013-10-28) |\n"
 	printf " o----------------------------------------------------------------o\n"	
-	printf " Error Message:$1 "
+	printf " Error Message:$1 \n"
     exit 1
 }
 ##Program Function
