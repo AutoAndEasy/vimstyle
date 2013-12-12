@@ -19,7 +19,7 @@ export LANG
 
 InputVar=$*
 HomeDir="/tmp/autoscript/"
-SourceSiteDomain="https://github.com/"
+SourceSiteDomain="https://github.com"
 SourceUrl="${SourceSiteDomain}/AutoAndEasy/vimstyle/archive/master.zip"
 
 ################ Func Define ################ 
