@@ -19,6 +19,8 @@ export LANG
 
 InputVar=$*
 HomeDir="/tmp/autoscript/"
+SourceSiteDomain="https://github.com/"
+SourceUrl="${SourceSiteDomain}/AutoAndEasy/vimstyle/archive/master.zip"
 
 ################ Func Define ################ 
 function _info_msg() {
@@ -84,6 +86,24 @@ fi
 
 cd $HomeDir || exit 1
 
+#vim backup
+if [ -f ~/.vimrc ]; then 
+    \cp -a ~/.vimrc ~/.vimrc.`date +%Y%m%d%H%M%S`.bakbyvimstyle
+fi
+if [ -d ~/.vim ]; then
+    \cp -a ~/.vim ~/.vim.`date +%Y%m%d%H%M%S`.bakbyvimstyle
+fi
+
+#Get the source
+yum -y install wget
+wget --no-check-certificate ${SourceUrl} -O vimstyle.zip
+
+#vimstyle install
+unzip vimstyle.zip
+cd vimstyle-master/
+
+\cp -a vimrc ~/.vimrc
+\cp -a vim ~/.vim
 
 _end_msg
 ############  Clean Cache  ############
