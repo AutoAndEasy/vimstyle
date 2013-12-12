@@ -97,14 +97,16 @@ fi
 #Get the source
 yum -y install wget
 wget --no-check-certificate ${SourceUrl} -O vimstyle.zip
+[ -f vimstyle.zip ] || (echo "Error:Download faild."; exit 1)
 
 #vimstyle install
 unzip vimstyle.zip
-cd vimstyle-master/
+cd vimstyle-master/ || (echo "Error:unzip error or vimstyle dir not exist."; exit 1)
 
-\cp -a vimrc ~/.vimrc
-\cp -a vim ~/.vim
+[ -f vimrc ] && \cp -a vimrc ~/.vimrc
+[ -d vim ] && \cp -a vim ~/.vim
 
-_end_msg
 ############  Clean Cache  ############
+cd
 rm -rf ${HomeDir}
+_end_msg
