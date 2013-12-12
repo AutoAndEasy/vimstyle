@@ -87,21 +87,20 @@ fi
 cd $HomeDir || exit 1
 
 #vim backup
-if [ -f ~/.vimrc ]; then 
-    \cp -a ~/.vimrc ~/.vimrc.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
-fi
-if [ -d ~/.vim ]; then
-    \cp -a ~/.vim ~/.vim.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
-fi
+[ -f ~/.vimrc ] && \cp -a ~/.vimrc ~/.vimrc.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
+[ -d ~/.vim ] && \cp -a ~/.vim ~/.vim.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
 
 #Get the source
 yum -y install wget
 wget --no-check-certificate ${SourceUrl} -O vimstyle.zip
-[ -f vimstyle.zip ] || (echo "Error:Download faild."; exit 1)
+if [ -f vimstyle.zip ]; then
+    echo "Error:Download faild."
+    exit 1
+fi
 
 #vimstyle install
 unzip vimstyle.zip
-cd vimstyle-master/ || (echo "Error:unzip error or vimstyle dir not exist."; exit 1)
+cd vimstyle-master/ || exit 1
 
 [ -f vimrc ] && \cp -a vimrc ~/.vimrc
 [ -d vim ] && \cp -a vim ~/.vim
