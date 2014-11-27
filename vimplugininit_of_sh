@@ -1,0 +1,178 @@
+backup dir 
+
+
+
+-----taglist
+
+
+install details
+1. Download the taglist.zip file and unzip the files to the $HOME/.vim or the 
+$HOME/vimfiles or the $VIM/vimfiles directory. After this step, you should 
+have the following two files (the directory structure should be preserved): 
+
+plugin/taglist.vim - main taglist plugin file 
+doc/taglist.txt    - documentation (help) file 
+
+Refer to the |add-plugin|, |add-global-plugin| and |runtimepath| Vim 
+help pages for more details about installing Vim plugins. 
+2. Change to the $HOME/.vim/doc or $HOME/vimfiles/doc or $VIM/vimfiles/doc 
+directory, start Vim and run the ":helptags ." command to process the 
+taglist help file. Without this step, you cannot jump to the taglist help 
+topics. 
+3. If the exuberant ctags utility is not present in your PATH, then set the 
+Tlist_Ctags_Cmd variable to point to the location of the exuberant ctags 
+utility (not to the directory) in the .vimrc file. 
+4. If you are running a terminal/console version of Vim and the terminal 
+doesn't support changing the window width then set the 
+'Tlist_Inc_Winwidth' variable to 0 in the .vimrc file. 
+5. Restart Vim. 
+6. You can now use the ":TlistToggle" command to open/close the taglist 
+window. You can use the ":help taglist" command to get more information 
+about using the taglist plugin. 
+
+
+
+--------------------------------acp
+============================================================================== 
+INTRODUCTION                                                *acp-introduction* 
+
+With this plugin, your vim comes to automatically opens popup menu for 
+completions when you enter characters or move the cursor in Insert mode. It 
+won't prevent you continuing entering characters. 
+
+
+============================================================================== 
+INSTALLATION                                                *acp-installation* 
+
+Put all files into your runtime directory. If you have the zip file, extract 
+it to your runtime directory. 
+
+You should place the files as follows: 
+> 
+<your runtime directory>/plugin/acp.vim 
+<your runtime directory>/doc/acp.txt 
+... 
+< 
+If you disgust to jumble up this plugin and other plugins in your runtime 
+directory, put the files into new directory and just add the directory path to 
+'runtimepath'. It's easy to uninstall the plugin. 
+
+And then update your help tags files to enable fuzzyfinder help. See 
+|add-local-help| for details. 
+
+
+============================================================================== 
+USAGE                                                              *acp-usage* 
+
+Once this plugin is installed, auto-popup is enabled at startup by default. 
+
+Which completion method is used depends on the text before the cursor. The 
+default behavior is as follows: 
+
+kind      filetype    text before the cursor ~ 
+Keyword   *           two keyword characters 
+Filename  *           a filename character + a path separator 
++ 0 or more filename character 
+Omni      ruby        ".", "::" or non-word character + ":" 
+(|+ruby| required.) 
+Omni      python      "." (|+python| required.) 
+Omni      xml         "<", "</" or ("<" + non-">" characters + " ") 
+Omni      html/xhtml  "<", "</" or ("<" + non-">" characters + " ") 
+Omni      css         (":", ";", "{", "^", "@", or "!") 
++ 0 or 1 space 
+
+Also, you can make user-defined completion and snipMate's trigger completion 
+(|acp-snipMate|) auto-popup if the options are set. 
+
+These behavior are customizable. 
+
+*acp-snipMate* 
+snipMate's Trigger Completion ~ 
+
+snipMate's trigger completion enables you to complete a snippet trigger 
+provided by snipMate plugin 
+(http://www.vim.org/scripts/script.php?script_id=2540) and expand it. 
+
+
+To enable auto-popup for this completion, add following function to 
+plugin/snipMate.vim: 
+> 
+fun! GetSnipsInCurrentScope() 
+let snips = {} 
+for scope in [bufnr('%')] + split(&ft, '\.') + ['_'] 
+call extend(snips, get(s:snippets, scope, {}), 'keep') 
+call extend(snips, get(s:multi_snips, scope, {}), 'keep') 
+endfor 
+return snips 
+endf 
+< 
+And set |g:acp_behaviorSnipmateLength| option to 1. 
+
+There is the restriction on this auto-popup, that the word before cursor must 
+consist only of uppercase characters. 
+
+*acp-perl-omni* 
+Perl Omni-Completion ~ 
+
+AutoComplPop supports perl-completion.vim 
+(http://www.vim.org/scripts/script.php?script_id=2852). 
+
+To enable auto-popup for this completion, set |g:acp_behaviorPerlOmniLength| 
+option to 0 or more. 
+
+
+============================================================================== 
+
+--------------------------echofunc
+Install:      1. Put echofunc.vim to /plugin directory.               
+2. Use the command below to create tags                 
+file including the language and                       
+signature fields.                                     
+ctags -R --fields=+lS .                             
+
+Usage:        When you type '(' after a function name                 
+in insert mode, the function declaration                 
+will be displayed in the command line                   
+automatically. Then you may use Alt+- and               
+Alt+= (configurable via EchoFuncKeyPrev                 
+and EchoFuncKeyNext) to cycle between                   
+function declarations (if exists).                       
+
+Another feature is to provide a balloon tip             
+when the mouse cursor hovers a function name,           
+macro name, etc. This works with when                   
++balloon_eval is compiled in.                           
+
+Because the message line often cleared by               
+some other plugins (e.g. ominicomplete), an             
+other choice is to show message in status line.         
+First, add  %{EchoFuncGetStatusLine()}  to               
+your 'statusline' option.                               
+Second, add the following line to your vimrc             
+let g:EchoFuncShowOnStatus = 1                           
+to avoid echoing function name in message line.   
+
+
+
+
+--------------------------minibufexpl
+Copy minibufexpl.vim into your plugin directory. Or :source minibufexpl.vim. That is all you need to get started. 
+
+If you want to enable extra functionality (documented in the source) you might want to add the following to your .vimrc: 
+
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+
+These are options that I expect most user will enjoy. 
+
+
+
+
+
+--------------------------NERD_tree
+install details
+Unzip the archive into your ~/.vim directory. 
+That should put NERD_tree.vim in ~/.vim/plugin and NERD_tree.txt in ~/.vim/doc. 
+
