@@ -44,8 +44,8 @@ set history=1000
 " 当文件在外部被修改时，自动读取(GUI);autowrite  autowriteall
 set autoread 
 
-" 一直启动鼠标(GUI)
-set mouse=a
+" 一直启动鼠标(GUI),很少使用GUI模式,因此关闭
+" set mouse=a
 
 " 设置mapleader
 let mapleader = ";"
@@ -137,7 +137,8 @@ set so=3
 set backspace=eol,start,indent
 
 " Backspace and cursor keys wrap to;support auto next line
-set whichwrap+=<,>,h,l
+" 如果使用l键向右时希望自动转入下一行,则添加l即可
+set whichwrap+=<,>,h
 
 " set magic on;$^.* needn't / in  Regular Expressions 
 set magic 
