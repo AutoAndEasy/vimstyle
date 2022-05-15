@@ -101,7 +101,7 @@ cd $HomeDir || _error_exit "Enter ${HomeDir} Faild."
 [ -d ~/.vim ] && \cp -a ~/.vim ~/.vim.by_vimstyle_`date +%Y%m%d%H%M%S`.bak
 
 #Get the source
-yum -y install wget
+yum -y install wget unzip
 wget --no-check-certificate ${SourceUrl} -O vimstyle.zip
 [ ! -s vimstyle.zip ] && _error_exit "Download Faild."
 
